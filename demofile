@@ -1,5 +1,9 @@
 pipeline {
     agent any
+    tools {
+        // Use the name you configured in Jenkins Global Tools
+        maven 'MAVEN_HOME' 
+    }
     stages {
         stage('Checkout') {          
             steps {
@@ -8,15 +12,13 @@ pipeline {
         }
         stage('Build') {
             steps {
-                // Use Maven to build your project
                 bat 'mvn clean package'
             }
         }
         stage('Test') {
             steps {
-                // Run tests if applicable
                 bat 'mvn test'
             }
         }
     }
-} 
+}
